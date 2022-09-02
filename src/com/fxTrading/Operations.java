@@ -17,10 +17,10 @@ public class Operations {
 	public static void operation()  
 	{
 		final double rate = 66.00;
-		double inr;
+		double inr=0;
 		String customerName;
 		String currencyPair;
-		double amount;
+		double amount=0;
 		
 		Options ojectCreation = new Options();
 		Scanner input = new Scanner (System.in);
@@ -46,12 +46,21 @@ public class Operations {
 			else
 			{
 				System.out.println("Enter amount to transfer:");
-				amount = input.nextDouble();
-				inr = amount*rate;
-				System.out.println("Do you want to get rate?");
+				try {
+					amount = input.nextDouble();
+					inr = amount*rate;
+				} 
+				catch(Exception exception)
+				{
+					System.out.println("Amount must be digit..");
+					Operations.operation(); // recursion
+				}
+				
+				System.out.println("Do you want to get rate?(YES/NO)\ncaution: only yes will display the rate");
 				String getRate = input.next();
 				if(getRate.equalsIgnoreCase("yes"))
 					System.out.println("You are transferring INR "+inr+" to "+customerName);
+				
 				System.out.println("Book/Cancel this trade?");
 				String bookOrCancel = input.next();
 				if(bookOrCancel.equalsIgnoreCase("book"))
@@ -60,8 +69,9 @@ public class Operations {
 					tradeNo++;
 					data.add(new Options(String.valueOf(tradeNo),customerName,currencyPair,String.valueOf(amount),String.valueOf(rate)));
 				}
-					else
-					System.out.println("Trade is Canceled...");
+				else if(bookOrCancel.equalsIgnoreCase("cancel")&& !(bookOrCancel.matches(".*\\d.*"))) System.out.println("Trade is Canceled...");
+					
+				else System.out.println("Enter only Book or Cancel others are invalid");
 				Operations.operation(); // recursion
 			}
 			break;
@@ -84,6 +94,11 @@ public class Operations {
 				System.out.println("Bye.. Have a good day");
 				System.exit(0);
 			}
+			else
+				{
+				System.out.println("Enter y or n");
+				Operations.operation();	// recursion
+				}
 			break;
 			
 		default:	// for invalid options

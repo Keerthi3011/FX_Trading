@@ -23,7 +23,7 @@ public class Options
 
 	@Override
 	public String toString() {
-		return tradeNo + "	" + CurrencyPair + "	" + CustomerName + "	" + amount + "	" + rate ;
+		return tradeNo + "	" + CurrencyPair.toUpperCase() + "	" + CustomerName + "	" + amount + "	" + rate ;
 	}
 
 	// created the method to get the option from the user
