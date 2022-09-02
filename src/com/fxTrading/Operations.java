@@ -28,9 +28,15 @@ public class Operations {
 		switch(ojectCreation.getOption())
 		{
 		case 1:	//Booking the trade
-			tradeNo++;
+			
 			System.out.println("Enter Customer name: ");
-			customerName = input.next(); 
+			customerName = input.nextLine(); 
+			boolean checkName = (customerName.matches(".*\\d.*"));
+			if(checkName)
+			{
+				System.out.println("Enter the proper name");
+				Operations.operation();// recursion
+			}
 			System.out.println("Enter currency pair: ");
 			currencyPair = input.next();
 			if(!currencyPair.equalsIgnoreCase("usdinr")) 
@@ -50,8 +56,8 @@ public class Operations {
 				String bookOrCancel = input.next();
 				if(bookOrCancel.equalsIgnoreCase("book"))
 				{
-					System.out.println( "Trade for "+currencyPair+" has been booked with rate "+rate+", The amount of Rs "+inr+" will  be transferred in 2 working days to "+customerName);
-
+					System.out.println( "Trade for "+currencyPair.toUpperCase()+" has been booked with rate "+rate+", The amount of Rs "+inr+" will  be transferred in 2 working days to "+customerName);
+					tradeNo++;
 					data.add(new Options(String.valueOf(tradeNo),customerName,currencyPair,String.valueOf(amount),String.valueOf(rate)));
 				}
 					else

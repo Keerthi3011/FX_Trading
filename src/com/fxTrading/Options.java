@@ -29,10 +29,15 @@ public class Options
 	// created the method to get the option from the user
 	public int getOption()
 	{
+		try {
 		System.out.println("****************************************************************");
 		Scanner input = new Scanner (System.in);
 		System.out.println("1 - Book Trade\n2 - Print Trade\n3 - Exit\n Enter the option(1 or 2 or 3):");
 		int option = input.nextInt();
 		return option;
+		}
+		catch(Exception variable) {}
+		
+		return 0;
 	}
 }
