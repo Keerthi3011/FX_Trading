@@ -10,8 +10,10 @@ public class Operations {
 	public static void dataCollectios()
 	{
 		data.add(new Options("TradeNo","CustomerName","CurrencyPair","Amount","Rate"));
-		Operations.operation();
+		Operations.operation(); // calling operation method
 	}	
+	
+	// created the method for the different types of operations(Booking, Printing, Exit)
 	public static void operation()  
 	{
 		final double rate = 66.00;
@@ -25,7 +27,7 @@ public class Operations {
 		
 		switch(ojectCreation.getOption())
 		{
-		case 1:
+		case 1:	//Booking the trade
 			tradeNo++;
 			System.out.println("Enter Customer name: ");
 			customerName = input.next(); 
@@ -33,7 +35,7 @@ public class Operations {
 			currencyPair = input.next();
 			if(!currencyPair.equalsIgnoreCase("usdinr")) 
 			{	System.out.println("appropriate error!...enter the valid input");
-				Operations.operation();
+				Operations.operation();// recursion
 			}
 			else
 			{
@@ -54,22 +56,22 @@ public class Operations {
 				}
 					else
 					System.out.println("Trade is Canceled...");
-				Operations.operation();
+				Operations.operation(); // recursion
 			}
 			break;
 			
-		case 2:
+		case 2:		// Printing the booked trades
 			if(tradeNo==0) System.out.println("No Trade is booked!!");
 			else
 				for(Options iterator : data)
 					System.out.println(iterator);
-			Operations.operation();
+			Operations.operation(); // recursion
 			break;
-		case 3:
+			
+		case 3:		// Exit
 			System.out.println("Do you want to exit (Y/N)? ");
 			String yOrN = input.next();
-			//String statement = (yOrN.equalsIgnoreCase("Y"))? "Bye.. Have a good day": Operations.operation();
-			if(yOrN.equalsIgnoreCase("n")) Operations.operation();
+			if(yOrN.equalsIgnoreCase("n")) Operations.operation();	// recursion
 			
 			else if(yOrN.equalsIgnoreCase("y"))
 			{	
@@ -77,10 +79,11 @@ public class Operations {
 				System.exit(0);
 			}
 			break;
-		default:
+			
+		default:	// for invalid options
 			{	
 				System.out.println("Enter the proper input!");
-				Operations.operation();
+				Operations.operation();		// recursion
 			}
 		}
 	}

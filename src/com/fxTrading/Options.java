@@ -1,7 +1,7 @@
 package com.fxTrading;
 
 import java.util.Scanner;
-
+// pojo class for storing the booked trades in an arraylist
 public class Options 
 {
 	private String tradeNo;
@@ -26,7 +26,7 @@ public class Options
 		return tradeNo + "	" + CurrencyPair + "	" + CustomerName + "	" + amount + "	" + rate ;
 	}
 
-
+	// created the method to get the option from the user
 	public int getOption()
 	{
 		System.out.println("****************************************************************");
